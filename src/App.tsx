@@ -4,6 +4,8 @@ import Counter from './Counter';
 import MyForm from './MyForm';
 import CounterReducer from './CounterReducer';
 import ReducerSample from './ReducerSample';
+import { SampleProvider } from './SampleContext';
+import { isDirective } from '@babel/generator/node_modules/@babel/types';
 
 
 function App() {
@@ -21,9 +23,14 @@ const onSubmit = (form: {name: string; description: string}) => {
       <Counter />
       <MyForm onSubmit={onSubmit} />
       <CounterReducer />
+      <div>
+        <SampleProvider>
       <ReducerSample />
+      </SampleProvider>
+      </div>
     </div>
   );
 }
 
 export default App;
+

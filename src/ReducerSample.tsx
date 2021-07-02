@@ -55,6 +55,24 @@ function ReducerSample() {
     return(
         <div>
             <h3>Reducer Sample</h3>
+            <p>
+            <code>count: </code> {state.count}
+            </p>
+            <p>
+            <code>text: </code> {state.text}
+            </p>
+            <p>
+            <code>color: </code> {state.color}
+            </p>
+            <p>
+            <code>isGood: </code> {state.isGood ? 'true' : 'false'}
+            </p>
+            <div>
+                <button onClick={setCounter}>SET_COUNT</button>
+                <button onClick={setText}>SET_TEXT</button>
+                <button onClick={setColor}>SET_COLOR</button>
+                <button onClick={toggleGood}>TOGGLE_GOOD</button>
+            </div>
         </div>
     );
 }
