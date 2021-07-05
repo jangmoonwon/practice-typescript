@@ -1,11 +1,6 @@
 import React from 'react';
-import Greetings from './Greetings';
-import Counter from './Counter';
-import MyForm from './MyForm';
-import CounterReducer from './CounterReducer';
-import ReducerSample from './ReducerSample';
-import { SampleProvider } from './SampleContext';
-import { isDirective } from '@babel/generator/node_modules/@babel/types';
+import styled from 'styled-components';
+
 
 
 function App() {
@@ -18,19 +13,14 @@ const onSubmit = (form: {name: string; description: string}) => {
 };
 
   return (
-    <div>
-      <Greetings name="react" onClick={onClick}/>
-      <Counter />
-      <MyForm onSubmit={onSubmit} />
-      <CounterReducer />
-      <div>
-        <SampleProvider>
-      <ReducerSample />
-      </SampleProvider>
-      </div>
-    </div>
+    <Container>
+      
+    </Container>
   );
 }
 
 export default App;
 
+const Container = styled.div`
+  display: flex;  
+`;
