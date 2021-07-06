@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import CounterContainer from './containers/CounterContainer';
 
 
 
 function App() {
-const onClick = (name: string) => {
-  console.log(`${name} say hello`);
-};
-
-const onSubmit = (form: {name: string; description: string}) => {
-  console.log(form);
-};
 
   return (
     <Container>
-      
+      <CounterContainer />
     </Container>
   );
 }

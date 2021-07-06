@@ -1,17 +1,18 @@
 // 액션 타입을 선언합니다
 // 뒤에 as const 를 붙여줌으로써 나중에 액션 객체를 만들게 action.type 의 값을 추론하는 과정에서
 // action.type 이 string 으로 추론되지 않고 'counter/INCREASE' 와 같이 실제 문자열 값으로 추론 되도록 해줍니다.
-const INCREASE = 'counter/INCREASE' as const;
-const DECREASE = 'counter/DECREASE' as const;
-const INCREASE_BY = 'counter/INCREASE_BY' as const;
+const INCREASE = "counter/INCREASE" as const;
+const DECREASE = "counter/DECREASE" as const;
+const INCREASE_BY = "counter/INCREASE_BY" as const;
+const RESET = "count/RESET" as const;
 
 // 액션 생성함수를 선언합니다
 export const increase = () => ({
-  type: INCREASE
+  type: INCREASE,
 });
 
 export const decrease = () => ({
-  type: DECREASE
+  type: DECREASE,
 });
 
 export const increaseBy = (diff: number) => ({
@@ -21,7 +22,11 @@ export const increaseBy = (diff: number) => ({
   // 이 규칙을 적용하면 액션들이 모두 비슷한 구조로 이루어져있게 되어 추후 다룰 때도 편하고
   // 읽기 쉽고, 액션 구조를 일반화함으로써 액션에 관련돤 라이브러리를 사용 할 수 있게 해줍니다.
   // 다만, 무조건 꼭 따를 필요는 없습니다.
-  payload: diff
+  payload: diff,
+});
+
+export const reset = () => ({
+  type: RESET,
 });
 
 // 모든 액션 겍체들에 대한 타입을 준비해줍니다.
@@ -30,7 +35,8 @@ export const increaseBy = (diff: number) => ({
 type CounterAction =
   | ReturnType<typeof increase>
   | ReturnType<typeof decrease>
-  | ReturnType<typeof increaseBy>;
+  | ReturnType<typeof increaseBy>
+  | ReturnType<typeof reset>;
 
 // 이 리덕스 모듈에서 관리 할 상태의 타입을 선언합니다
 type CounterState = {
@@ -39,7 +45,7 @@ type CounterState = {
 
 // 초기상태를 선언합니다.
 const initialState: CounterState = {
-  count: 0
+  count: 0,
 };
 
 // 리듀서를 작성합니다.
@@ -56,6 +62,8 @@ function counter(
       return { count: state.count - 1 };
     case INCREASE_BY:
       return { count: state.count + action.payload };
+    case RESET:
+      return { count: 0 };
     default:
       return state;
   }
